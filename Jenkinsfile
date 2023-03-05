@@ -6,7 +6,7 @@ node {
      commit_id = readFile('.git/commit-id').trim()
    }
    stage('test') {
-     def myContainer = docker.image('cypress/included')
+     def myContainer = docker.image('cypress/included:9.4.1')
      myContainer.pull()
      myContainer.inside  {
        sh 'npm install'
