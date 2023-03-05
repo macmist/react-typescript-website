@@ -6,9 +6,9 @@ node {
      commit_id = readFile('.git/commit-id').trim()
    }
    stage('test') {
-     def myContainer = docker.image('cypress/included:9.4.1')
+     def myContainer = docker.image('cypress/factory').args('')
      myContainer.pull()
-     myContainer.inside  {
+     myContainer.withRun('NODE_VERSION=19.7.0')  { c ->
        sh 'npm install'
        sh 'npm test'
        sh 'npm run cy:test'
