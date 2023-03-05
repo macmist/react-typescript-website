@@ -1,6 +1,8 @@
-FROM node
+FROM node:19.7.0
 WORKDIR /app
-ADD . /app
-RUN npm install
+COPY package.json ./
+COPY package-lock.json ./
+COPY ./ ./
+RUN npm i
 EXPOSE 3000
-CMD npm start
+CMD ["npm", "start"]
