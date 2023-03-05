@@ -11,6 +11,7 @@ node {
      myContainer.inside  {
        sh 'npm install --only=dev'
        sh 'npm test'
+       sh 'npm run cy:test'
      }
    }
    stage('docker build/push') {
