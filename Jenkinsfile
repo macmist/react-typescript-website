@@ -9,9 +9,9 @@ node {
      def myContainer = docker.image('node')
      myContainer.pull()
      myContainer.inside  {
-       sh 'npm install --only=dev'
+       sh 'CYPRESS_CACHE_FOLDER=./tmp/Cypress npm install --only=dev'
        sh 'npm test'
-       sh 'npm run cy:test'
+       sh 'CYPRESS_CACHE_FOLDER=./tmp/Cypress npm run cy:test'
      }
    }
    stage('docker build/push') {
