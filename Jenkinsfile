@@ -8,7 +8,7 @@ node {
    stage('test') {
      def myContainer = docker.image('cypress/factory')
      myContainer.pull()
-     myContainer.withRun('-e "NODE_VERSION=19.7.0"')  { c ->
+     myContainer.inside  {
        sh 'npm install'
        sh 'npm test'
        sh 'npm run cy:test'
