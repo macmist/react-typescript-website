@@ -11,6 +11,7 @@ node {
      myContainer.inside  {
        sh 'npm install'
        sh 'npm test'
+       sh 'cypress install'
        sh 'npm run cy:test'
      }
    }
