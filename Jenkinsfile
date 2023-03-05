@@ -6,13 +6,12 @@ node {
      commit_id = readFile('.git/commit-id').trim()
    }
    stage('test') {
-     def myContainer = docker.image('node')
+     def myContainer = docker.image('cypress/included')
      myContainer.pull()
      myContainer.inside  {
-       sh 'apt-get install libgtk2.0-0 libgtk-3-0 libgbm-dev libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2 libxtst6 xauth xvfb'
-       sh 'CYPRESS_CACHE_FOLDER=./tmp/Cypress npm install'
+       sh 'npm install'
        sh 'npm test'
-       sh 'CYPRESS_CACHE_FOLDER=./tmp/Cypress npm run cy:test'
+       sh 'npm run cy:test'
      }
    }
    stage('docker build/push') {
